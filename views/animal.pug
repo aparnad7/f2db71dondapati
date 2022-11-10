@@ -1,0 +1,18 @@
+extends layout
+
+
+
+block content
+  h1= title
+  p Welcome to #{title}
+  p Aparna Dondapati 
+  - var result = [{"animal_color":"black","animal_type":"dog","animal_age": 7},{"animal_color":"white","animal_type":"cat","animal_age":9},{"animal_color":"brown","animal_type":"rabbit","animal_age":8}]
+  div.container-fluid
+     div.row
+        each item,index in result
+            div.col-sm-2(onclick=`buy(${index})`) Animal Color : #{item["animal_color"]}  <br>  Animal Type : #{item["animal_type"]} <br>Animal Age : #{item["animal_age"]}
+  script.
+      function buy(index){
+         alert("you purchased item "+(index+1))
+      }
+      
