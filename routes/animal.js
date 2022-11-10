@@ -2,15 +2,11 @@ var express = require('express');
 
 var router = express.Router();
 
+const Animal_controlers = require('../controllers/Animal');
 
 
 /* GET home page. */
-
-router.get('/', function(req, res, next) {
-
-  res.render('animal', { title: 'Search Results Animal' });
-
-});
+router.get('/',Animal_controlers.Animal_view_all_Page);
 
 
 
