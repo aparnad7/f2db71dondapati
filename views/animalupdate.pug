@@ -1,0 +1,45 @@
+extends layout 
+block content
+ div(class="container-fluid p-5 bg-primary text-blue text-center")
+  h2.text-center update Animal
+br
+
+        - let animalid = toShow._id 
+        - let animal_color = toShow.animal_color 
+        - let animal_Type = toShow.animal_Type 
+        - let animal_age = toShow.animal_age 
+
+        div.row(class='mb-2') 
+            div.mr-1 ID is 
+            div #{animalid}  
+        - let actionid = "/resource/Animal/" + animalid 
+        form(id='AnimalForm', action=actionid, method="PUT") 
+            div.form-group 
+                label.animalstyle(for='animal_color') Animal Color 
+                input#animal_color(type='text', name='animal_color',value = animal_color)
+            div.form-group 
+                label.animalstyle(for='animal_Type') Animal Type 
+                input#animal_Type(type='text', name='animal_Type',value = toShow.animal_Type ) 
+            div.form-group 
+                label.animalstyle(for='animal_age') Animal Age 
+                input#animal_age(type='number', name='animal_age',value = toShow.animal_age) 
+                span.validity
+                Button(type="submit",class="btn btn-primary") update 
+        
+        script. 
+            document.forms['AnimalForm'].addEventListener('submit', (event) => { 
+            event.preventDefault(); 
+            // TODO do something here to show user that form is being submitted 
+            fetch(event.target.action, { 
+                method: 'PUT', 
+                body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+            }).then((resp) => { 
+                return resp.json(); // or resp.text() or whatever the server sends 
+            }).then((body) => { 
+                alert("Update succeded") 
+                // TODO handle body 
+            }).catch((error) => { 
+                // TODO handle error 
+                alert("Save failed " + error ) 
+            }); 
+            }); 
