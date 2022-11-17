@@ -27,4 +27,10 @@ router.get('/Animal/:id', Animal_controller.Animal_detail);
 // GET request for list of all Animal items. 
 router.get('/Animal', Animal_controller.Animal_list); 
 
+router.get('/detail', Animal_controller.Animal_view_one_Page);
+
+router.get('/create',Animal_controller.Animal_create_Page);
+
+router.get('/update', Animal_controller.Animal_update_Page);
+
 module.exports = router; 
