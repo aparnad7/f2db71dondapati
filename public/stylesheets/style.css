@@ -6,3 +6,15 @@ body {
 a {
   color: #00B7FF;
 }
+
+
+.animalAttr {
+  background-color: aquamarine;
+  width: 120px;
+ }
+ 
+.animalstyle{
+  background-color: rgb(22, 68, 185);
+  width: 200px;
+
+}
