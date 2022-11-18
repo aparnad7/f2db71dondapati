@@ -8,11 +8,13 @@ block content
   p Aparna Dondapati 
   - var result = Ani_results
   div.container-fluid
-     div.row
+     div(class="row m-1")
         each item,index in result
-            div.col-sm-2(onclick=`buy(${index})`) Animal Color : #{item["animal_color"]}  <br>  Animal Type : #{item["animal_Type"]} <br>Animal Age : #{item["animal_age"]}
+            -let destination = `dispatch(\"/resource/update?id=${item._id}\")`
+            div(class="row-sm-2", class="m-1") Animal Color : #{item["animal_color"]}  <br>  Animal Type : #{item["animal_Type"]} <br>Animal Age : #{item["animal_age"]}
+            button.btn( class="btn-primary ml-1", onclick= destination) Update
   script.
-      function buy(index){
-         alert("you purchased item "+(index+1))
-      }
+     function dispatch(path){
+        window.location.href=path
+     }
       
