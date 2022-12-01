@@ -7,14 +7,32 @@ block content
   p Welcome to #{title}
   p Aparna Dondapati 
   - var result = Ani_results
-  div.container-fluid
-     div(class="row m-1")
-        each item,index in result
-            -let destination = `dispatch(\"/resource/update?id=${item._id}\")`
-            div(class="row-sm-2", class="m-1") Animal Color : #{item["animal_color"]}  <br>  Animal Type : #{item["animal_Type"]} <br>Animal Age : #{item["animal_age"]}
-            button.btn( class="btn-primary ml-1", onclick= destination) Update
-  script.
-     function dispatch(path){
-        window.location.href=path
-     }
-      
+  button.btn( class="btn-primary ml-1", onclick= `dispatch(\"/resource/create\")` ) Create a new Item
+  table(class="table table-stripped table-bordered")
+        thead(style="background-color:brown;color:white") 
+            tr
+                td Item ID
+                td Animal Color 
+                td Animal Typee 
+                td Animal Age 
+                td Update
+                td Details
+                td Delete
+        tbody
+            
+            each item in result
+                tr
+                    td #{item._id}
+                    td #{item.animal_color}
+                    td #{item.animal_Type}
+                    td #{item.animal_age}
+                    td 
+                      button.btn( class="btn-primary ml-1", onclick= `dispatch(\"/resource/update/?id=${item._id}\")` ) Update
+                    td 
+                      button.btn( class="btn-primary ml-1", onclick= `dispatch(\"/resource/detail/?id=${item._id}\")` ) Details
+                    td 
+                      button.btn( class="btn-primary ml-1", onclick= `dispatch(\"/resource/delete/?id=${item._id}\")` ) Delete 
+                script. 
+                  function dispatch(path){ 
+                    window.location.href=path 
+                  } 

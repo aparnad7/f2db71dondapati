@@ -2,48 +2,47 @@ extends layout
 block content
     h1= title
     if (toShow == null)
-    h2 No instance to delete
+        h2 No instance to delete
     else
-    - let Animalid = toShow._id
-    - let Animal_type = toShow.Animal_type
-    - let Animalcost = toShow.cost
-    - let Animalsize = toShow.size
-    - let actionid = "/resource/Animals/" + Animalid
-    script let actionid = "#{actionid}"
-    div
-    div.row
-    div(class='AnimalAttr mr-3') Animal ID is:
-    div #{Animalid}
-    div.row
-    div(class='AnimalAttr mr-3') Animal Type is:
-    div #{Animal_type}
-    div.row
-    div(class='AnimalAttr mr-3') Animal Size is:
-    div #{Animalsize}
-    div.row
-    div(class='AnimalAttr mr-3') Animal Cost is:
-    div #{Animalcost}
-    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
-    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+        - let Animalid = toShow._id
+        - let Animal_type = toShow.Animal_type
+        - let Animalcost = toShow.cost
+        - let Animalsize = toShow.size
+        - let actionid = "/resource/Animals/" + Animalid
+        script let actionid = "#{actionid}"
+        div
+        div.row
+        div(class='AnimalAttr mr-3') Animal ID is:
+        div #{Animalid}
+        div.row
+        div(class='AnimalAttr mr-3') Animal Type is:
+        div #{Animal_type}
+        div.row
+        div(class='AnimalAttr mr-3') Animal Size is:
+        div #{Animalsize}
+        div.row
+        div(class='AnimalAttr mr-3') Animal Cost is:
+        div #{Animalcost}
+        button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+        button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
     script.
-    function cancel() {
-    // Go back to the home page for the Animal collection
-    window.location.href='/Animals'
-    }
+        function cancel() {
+            window.location.href='/animal'
+        }
     script.
-    function deleteOnid() {
-        console.log("starting delete")
-    // delete first
-    fetch(actionid, {
-        method: 'DELETE' 
-     }).then((resp) => {
-        return resp.json(); // or resp.text() or whatever the server sends
-    }).then((body) => {
-        alert("Delete succeded")
-    window.location.href='/Animals'
-    // TODO handle body
-    }).catch((error) => {
-    // TODO handle error
-        alert("Delete failed " + error )
-    });
-    }
+        function deleteOnid() {
+            console.log("starting delete")
+        // delete first
+        fetch(actionid, {
+            method: 'DELETE' 
+        }).then((resp) => {
+            return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+            alert("Delete succeded")
+        window.location.href='/Animals'
+        // TODO handle body
+        }).catch((error) => {
+        // TODO handle error
+            alert("Delete failed " + error )
+        });
+        }
